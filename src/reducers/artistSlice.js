@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3000/artists'
+const baseUrl = 'https://arthive.up.railway.app/artists'
 
 export const artistSlice = createSlice({
   name: 'artists',

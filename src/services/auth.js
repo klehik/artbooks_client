@@ -1,12 +1,12 @@
 import axios from 'axios'
 import userService from './user'
 
-const baseUrl = 'https://photobooks.up.railway.app/'
+const baseUrl = 'https://photobooks.up.railway.app'
 
 const login = async (credentials) => {
   // passport sessions
   try {
-    const response = await axios.post('/auth/login', credentials)
+    const response = await axios.post(`${baseUrl}/auth/login`, credentials)
     return response
   } catch (error) {
     return error.response
@@ -15,21 +15,21 @@ const login = async (credentials) => {
 
 const logout = async () => {
   // passport sessions
-  const response = await axios.post('/auth/logout')
+  const response = await axios.post(`${baseUrl}/auth/logout`)
   return response
   // localstorage
   //userService.clearUser()
 }
 
 const user = async () => {
-  const response = await axios.get('/auth/user')
+  const response = await axios.get(`${baseUrl}/auth/user`)
 
   return response.data
 }
 
 const register = async (creds) => {
   try {
-    const response = await axios.post('/auth/register', creds)
+    const response = await axios.post(`${baseUrl}/auth/register`, creds)
     return response
   } catch (error) {
     return error.response

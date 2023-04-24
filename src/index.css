@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navlink {
+  margin: '1rem';
+  text-decoration: none;
+  color: 'white';
+}
+
+/* #nav {
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.698);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Barlow', 'Open Sans', sans-serif;
+  height: 100%;
+  width: 100%;
+  max-width: 1500px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding-right: 1rem;
+  box-sizing: border-box;
+  z-index: 6;
+} */
+
+#nav a.active {
+  border-bottom: 2px solid white;
+}
+
+.card {
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.698);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Barlow', 'Open Sans', sans-serif;
+  display: flex;
+  max-width: 240px;
+  margin-right: 1rem;
+  flex: 1 1 0%;
+  min-width: 200px;
+  border: 0.5px solid beige;
+}
+
+.sidebar {
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.698);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Barlow', 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+#books {
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.698);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Barlow', 'Open Sans', sans-serif;
+}
+
+.preview-img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.book-detail {
+  border: 1px solid beige;
+}
+
+.load-wraper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(211, 211, 211);
+  z-index: 44;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.activity {
+  position: absolute;
+  left: -45%;
+  height: 100%;
+  width: 45%;
+  background-image: linear-gradient(
+    to left,
+    rgba(251, 251, 251, 0.05),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.6),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.05)
+  );
+  background-image: -moz-linear-gradient(
+    to left,
+    rgba(251, 251, 251, 0.05),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.6),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.05)
+  );
+  background-image: -webkit-linear-gradient(
+    to left,
+    rgba(251, 251, 251, 0.05),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.6),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.05)
+  );
+  animation: loading 1s infinite;
+  z-index: 45;
+}
+
+@keyframes loading {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.card-img-top {
+  position: relative;
+}
+
+.card-image {
+  height: 200px;
+
+  position: relative;
+}
+
+.bg {
+  background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).webp');
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-banner {
+  background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).webp');
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

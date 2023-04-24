@@ -1,7 +1,7 @@
 import axios from 'axios'
 import userService from './user'
 
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://photobooks.up.railway.app/'
 
 const login = async (credentials) => {
   // passport sessions

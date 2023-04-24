@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { notify } from '../utils'
 
-const baseUrl = 'http://localhost:3000/book'
+const baseUrl = 'https://arthive.up.railway.app/book'
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',

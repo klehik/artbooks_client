@@ -46,7 +46,7 @@ export const deleteBook = createAsyncThunk('books/deleteBook', async (id) => {
 })
 
 export const addBook = createAsyncThunk('books/addBook', async (formData) => {
-  const response = await axios.post(`${baseUrl}/book`, formData, {
+  const response = await axios.post(`${baseUrl}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
   notify(response.data.message)

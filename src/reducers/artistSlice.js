@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import axios from 'axios'
 
+const baseUrl = 'https://photobooks.up.railway.app/artists'
+
 export const artistSlice = createSlice({
   name: 'artists',
   initialState: {
@@ -18,7 +20,7 @@ export const artistSlice = createSlice({
 export const fetchArtists = createAsyncThunk(
   'artists/fetchArtists',
   async () => {
-    const response = await axios.get('/artists')
+    const response = await axios.get(baseUrl)
     return response.data.data
   }
 )

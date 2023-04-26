@@ -19,13 +19,7 @@ export const fetchBooks = createAsyncThunk(
 export const fetchDashBooks = createAsyncThunk(
   'books/fetchDashBooks',
   async () => {
-    const response = await axios.get(`${baseUrl}/dashboard`, {
-      withCredentials: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-    })
+    const response = await axios.get(`${baseUrl}/dashboard`)
     console.log(response)
     return response.data
   }

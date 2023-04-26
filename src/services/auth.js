@@ -2,7 +2,7 @@ import axios from 'axios'
 import userService from './user'
 
 const baseUrl = 'https://photobooks.up.railway.app/auth'
-axios.defaults.withCredentials = true
+
 const login = async (credentials) => {
   // passport sessions
   try {

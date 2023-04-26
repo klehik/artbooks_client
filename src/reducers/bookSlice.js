@@ -8,7 +8,7 @@ const baseUrl = 'https://photobooks.up.railway.app/book'
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async ({ query }) => {
-    const response = await axios.get(`${baseUrl}`, {
+    const response = await axios.get(`/book`, {
       params: query,
     })
     console.log(response.data)
@@ -19,7 +19,7 @@ export const fetchBooks = createAsyncThunk(
 export const fetchDashBooks = createAsyncThunk(
   'books/fetchDashBooks',
   async () => {
-    const response = await axios.get(`${baseUrl}/dashboard`)
+    const response = await axios.get(`/book/dashboard`)
     console.log(response)
     return response.data
   }
@@ -28,7 +28,7 @@ export const fetchDashBooks = createAsyncThunk(
 export const updateBook = createAsyncThunk(
   'books/updateBook',
   async (params) => {
-    const response = await axios.put(`${baseUrl}/${params.id}`, params.update)
+    const response = await axios.put(`/book/${params.id}`, params.update)
     notify(response.data.message)
     return response.data.data
   }
@@ -36,7 +36,7 @@ export const updateBook = createAsyncThunk(
 
 export const deleteBook = createAsyncThunk('books/deleteBook', async (id) => {
   try {
-    const response = await axios.delete(`${baseUrl}/${id}`)
+    const response = await axios.delete(`/book/${id}`)
     notify(response.data.message)
     return response.data.data
   } catch (err) {
@@ -56,7 +56,7 @@ export const addBook = createAsyncThunk('books/addBook', async (formData) => {
 export const fetchSearchBooks = createAsyncThunk(
   'books/fetchBookTitles',
   async ({ query, signal }) => {
-    const response = await axios.get(`${baseUrl}`, {
+    const response = await axios.get(`/book`, {
       params: query,
       signal: signal,
     })

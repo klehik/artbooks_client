@@ -4,7 +4,7 @@ import axios from 'axios'
 import { notify } from '../utils'
 
 const baseUrl = 'https://photobooks.up.railway.app/book'
-
+axios.defaults.withCredentials = true
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async ({ query }) => {

@@ -6,7 +6,13 @@ axios.defaults.withCredentials = true
 const login = async (credentials) => {
   // passport sessions
   try {
-    const response = await axios.post(`${baseUrl}/login`, credentials)
+    const response = await axios.post(`${baseUrl}/login`, credentials, {
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+    })
     return response
   } catch (error) {
     return error.response

@@ -15,19 +15,19 @@ const login = async (credentials) => {
 }
 
 const logout = async () => {
-  const response = await axios.post('/auth/logout')
+  const response = await axios.post(`${baseUrl}/auth/logout`)
   return response
 }
 
 const user = async () => {
-  const response = await axios.get('/auth/user')
+  const response = await axios.get(`${baseUrl}/auth/user`)
 
   return response.data
 }
 
 const register = async (creds) => {
   try {
-    const response = await axios.post('/auth/register', creds)
+    const response = await axios.post(`${baseUrl}/auth/register`, creds)
     return response
   } catch (error) {
     return error.response

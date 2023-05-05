@@ -3,7 +3,7 @@ import Container from '@mui/material/Container'
 import TextField from '@mui/material/TextField'
 import Stack from '@mui/joy/Stack'
 
-import img from '../assets/ban.jpeg'
+import img from '../assets/banner.jpg'
 
 const Banner = ({ header, paragraph }) => {
   return (

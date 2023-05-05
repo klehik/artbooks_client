@@ -5,20 +5,18 @@ import { Routes, Route, useMatch, useNavigate } from 'react-router-dom'
 import authService from './services/auth'
 import { UserContext } from './context/UserContext'
 
-import Artist from './components/Artist/Artist'
 import Manage from './components/Manage/Manage'
 import Artists from './components/Artist/Artists'
-import MainNav from './components/MainNav'
+
 import Books from './components/Artist/Books'
 import BookDetails from './components/Artist/BookDetails'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchArtists } from './reducers/artistSlice'
-import { Container } from 'react-bootstrap'
-import ResponsiveAppBar from './components/Nav'
-import Banner from './components/Banner'
-import { ToastContainer } from 'react-toastify'
-import Footer from './components/Footer'
 
+import ResponsiveAppBar from './components/Nav'
+
+import { ToastContainer } from 'react-toastify'
+
+import ArtistBooks from './components/Artist/ArtistBooks'
 const App = () => {
   const [loggedUser, setLoggedUser] = useState()
 
@@ -63,10 +61,7 @@ const App = () => {
       <ResponsiveAppBar></ResponsiveAppBar>
 
       <Routes>
-        <Route
-          path="/"
-          element={<Banner header={'Book Archive'}></Banner>}
-        ></Route>
+        <Route path="/" element={<Books></Books>}></Route>
         <Route path="/books" element={<Books></Books>}></Route>
         <Route
           path="/artists/*"
@@ -75,10 +70,7 @@ const App = () => {
         <Route path="/manage/*" element={<Manage></Manage>}></Route>
         <Route path="/books/:id" element={<BookDetails />} />
 
-        <Route
-          path="/artists/:id"
-          element={<Artist artist={artist}></Artist>}
-        />
+        <Route path="/artists/:id" element={<ArtistBooks artist={artist} />} />
       </Routes>
     </UserContext.Provider>
   )

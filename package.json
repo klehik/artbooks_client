@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
+    "react-dotenv": "^0.1.3",
     "react-infinite-scroller": "^1.2.6",
     "react-lazy-load-image-component": "^1.5.6",
     "react-loading-skeleton": "^3.2.0",
@@ -29,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-dotenv && react-scripts start",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

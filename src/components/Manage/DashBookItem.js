@@ -22,7 +22,7 @@ const DashBookItem = ({ book }) => {
   }
 
   return (
-    <Container style={{ border: '2px solid beige' }}>
+    <Container style={{ border: '2px solid black' }}>
       <Row className="justify-content-center">
         <Col>Artist: {book.artist}</Col>
         <Col>Title: {book.title}</Col>

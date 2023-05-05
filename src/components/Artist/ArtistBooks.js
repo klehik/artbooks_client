@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import BookCard from './BookCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBooks } from '../../reducers/bookSlice'
@@ -18,19 +18,21 @@ const ArtistBooks = ({ artist }) => {
           justifyContent="center"
           alignItems="center"
         >
-          {artist.books
-            ? artist.books.map((book, index) => (
-                <Grid key={book.id} item xs={12} sm={6} md={6}>
-                  {index === artist.books.length - 1 ? (
-                    <>
-                      <BookCard book={book}></BookCard>
-                    </>
-                  ) : (
+          {artist.books.length > 0 ? (
+            artist.books.map((book, index) => (
+              <Grid key={book.id} item xs={12} sm={6} md={6}>
+                {index === artist.books.length - 1 ? (
+                  <>
                     <BookCard book={book}></BookCard>
-                  )}
-                </Grid>
-              ))
-            : null}
+                  </>
+                ) : (
+                  <BookCard book={book}></BookCard>
+                )}
+              </Grid>
+            ))
+          ) : (
+            <Typography>This artist has not uploaded any books</Typography>
+          )}
         </Grid>
       </Container>
     </>

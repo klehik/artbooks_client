@@ -6,12 +6,14 @@ const Footer = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10,
+
+        bottom: 0,
+        width: '100%',
+        height: 400,
+        margin: 'auto',
         backgroundColor: 'black',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
-        height: 200,
-        width: '100%',
       }}
     ></Box>
   )

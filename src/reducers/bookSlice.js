@@ -48,7 +48,7 @@ export const deleteBook = createAsyncThunk('books/deleteBook', async (id) => {
 })
 
 export const addBook = createAsyncThunk('books/addBook', async (formData) => {
-  const response = await axios.post(`${baseUrl}/book`, formData, {
+  const response = await axios.post(`${baseUrl}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
   notify(response.data.message)
@@ -56,7 +56,7 @@ export const addBook = createAsyncThunk('books/addBook', async (formData) => {
 })
 
 export const getBookById = createAsyncThunk('books/getBookById', async (id) => {
-  const response = await axios.get(`${baseUrl}/book/${id}`)
+  const response = await axios.get(`${baseUrl}/${id}`)
   return response.data
 })
 

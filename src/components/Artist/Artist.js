@@ -9,8 +9,6 @@ import BookCard from './BookCard'
 import ArtistBooks from './ArtistBooks'
 
 const Artist = ({ artist }) => {
-  const { loggedUser } = useContext(UserContext)
-
   return (
     <>
       {artist.books.length > 0 ? (

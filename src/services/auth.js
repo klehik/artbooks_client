@@ -1,18 +1,13 @@
 import axios from 'axios'
 import userService from './user'
 
-const baseUrl = 'https://photobooks.up.railway.app/auth'
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL
+
 axios.defaults.withCredentials = true
+
 const login = async (credentials) => {
-  // passport sessions
   try {
-    const response = await axios.post(`${baseUrl}/login`, credentials, {
-      withCredentials: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-    })
+    const response = await axios.post(`${baseUrl}/auth/login`, credentials)
     return response
   } catch (error) {
     return error.response
@@ -20,22 +15,19 @@ const login = async (credentials) => {
 }
 
 const logout = async () => {
-  // passport sessions
-  const response = await axios.post(`${baseUrl}/logout`)
+  const response = await axios.post('/auth/logout')
   return response
-  // localstorage
-  //userService.clearUser()
 }
 
 const user = async () => {
-  const response = await axios.get(`${baseUrl}/user`)
+  const response = await axios.get('/auth/user')
 
   return response.data
 }
 
 const register = async (creds) => {
   try {
-    const response = await axios.post(`${baseUrl}/register`, creds)
+    const response = await axios.post('/auth/register', creds)
     return response
   } catch (error) {
     return error.response

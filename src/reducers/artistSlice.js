@@ -2,8 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import axios from 'axios'
 
-const baseUrl = 'https://photobooks.up.railway.app/artists'
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL + '/artists'
+
 axios.defaults.withCredentials = true
+
 export const artistSlice = createSlice({
   name: 'artists',
   initialState: {

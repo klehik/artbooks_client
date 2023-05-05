@@ -2,10 +2,18 @@ import { useNavigate } from 'react-router-dom'
 import { Row, Col, Card } from 'react-bootstrap'
 import userIcon from '../../assets/user-icon.png'
 import Banner from '../Banner'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchArtists } from '../../reducers/artistSlice'
 
 const Artists = ({ artists }) => {
   const navigate = useNavigate()
-  console.log(artists)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchArtists())
+  }, [])
+
   return (
     <>
       <Banner header={'Artists'}></Banner>

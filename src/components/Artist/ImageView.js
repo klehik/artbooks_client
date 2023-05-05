@@ -1,3 +1,4 @@
+import { Container, Grid } from '@mui/material'
 import React, { useState, useCallback, useEffect } from 'react'
 import { Image } from 'react-bootstrap'
 
@@ -29,17 +30,28 @@ const ImageView = ({ filenames }) => {
   const rightArrow = <div style={{ color: 'black' }}>{'>'}</div>
 
   return (
-    <div>
+    <>
       {images.map((src, index) => (
-        <Image
-          className="preview-img"
-          src={src}
-          onClick={() => openImageViewer(index)}
-          width="250"
+        <Grid
+          alignItems="center"
+          justifyContent="center"
+          display="flex"
           key={index}
-          style={{ margin: '2px' }}
-          alt=""
-        />
+          item
+          xs={12}
+          sm={12}
+          md={12}
+        >
+          <Image
+            className="preview-img"
+            src={src}
+            onClick={() => openImageViewer(index)}
+            width="550"
+            key={index}
+            style={{ margin: '2px' }}
+            alt=""
+          />
+        </Grid>
       ))}
 
       {isViewerOpen && (
@@ -54,7 +66,7 @@ const ImageView = ({ filenames }) => {
           onClose={closeImageViewer}
         />
       )}
-    </div>
+    </>
   )
 }
 

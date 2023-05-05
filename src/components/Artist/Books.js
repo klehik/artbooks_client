@@ -53,7 +53,7 @@ const Books = () => {
   return (
     <>
       <Banner header={'Books'}></Banner>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <SearchField></SearchField>
         <Grid
           container
@@ -73,6 +73,26 @@ const Books = () => {
               )}
             </Grid>
           ))}
+        </Grid>
+
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          marginTop={0.5}
+        >
+          {status === 'loading' ? (
+            <>
+              <Grid item xs={12} sm={6} md={6}>
+                <LoadingCard />
+              </Grid>
+              <Grid item xs={12} sm={6} md={6}>
+                <LoadingCard />
+              </Grid>
+            </>
+          ) : null}
         </Grid>
       </Container>
     </>

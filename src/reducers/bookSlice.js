@@ -3,8 +3,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { notify } from '../utils'
 
-const baseUrl = 'https://photobooks.up.railway.app/book'
+const baseUrl = process.env.REACT_APP_BACKEND_BASE_URL + '/book'
+
 axios.defaults.withCredentials = true
+
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async ({ query }) => {
@@ -46,35 +48,27 @@ export const deleteBook = createAsyncThunk('books/deleteBook', async (id) => {
 })
 
 export const addBook = createAsyncThunk('books/addBook', async (formData) => {
-  const response = await axios.post(`${baseUrl}`, formData, {
+  const response = await axios.post(`/book`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
   notify(response.data.message)
   return response.data.data
 })
 
-export const fetchSearchBooks = createAsyncThunk(
-  'books/fetchBookTitles',
-  async ({ query, signal }) => {
-    const response = await axios.get(`${baseUrl}`, {
-      params: query,
-      signal: signal,
-    })
-    console.log(response.data)
-    return response.data
-  }
-)
+export const getBookById = createAsyncThunk('books/getBookById', async (id) => {
+  const response = await axios.get(`/book/${id}`)
+  return response.data
+})
 
 const initialState = {
   books: [],
   dashBooks: [],
-  searchBooks: [],
-  searchStatus: 'idle',
   status: 'idle',
   error: null,
   pageCount: 100,
   hasMorePages: true,
   page: 1,
+  book: null,
 }
 
 export const bookSlice = createSlice({
@@ -90,26 +84,48 @@ export const bookSlice = createSlice({
   },
   extraReducers(builder) {
     builder
+      // books
       .addCase(fetchBooks.pending, (state, action) => {
         state.status = 'loading'
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
         state.status = 'succeeded'
-
         state.books = action.payload.data
 
-        state.pageCount = action.payload.pageCount
-        state.hasMorePages = Boolean(state.page < state.pageCount)
+        state.hasMorePages = action.payload.hasMore
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message
       })
+      // books for dashboard
 
+      .addCase(fetchDashBooks.pending, (state, action) => {
+        state.status = 'loading'
+      })
       .addCase(fetchDashBooks.fulfilled, (state, action) => {
+        state.status = 'succeeded'
         state.dashBooks = action.payload.data
       })
+      .addCase(fetchDashBooks.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
 
+      // book by id
+      .addCase(getBookById.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(getBookById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.book = action.payload.data
+      })
+      .addCase(getBookById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+
+      // mutations
       .addCase(updateBook.fulfilled, (state, action) => {
         const index = state.books.findIndex((b) => b.id === action.payload.id)
         state.books[index] = action.payload
@@ -126,13 +142,6 @@ export const bookSlice = createSlice({
       .addCase(addBook.fulfilled, (state, action) => {
         state.books.push(action.payload)
         state.dashBooks.push(action.payload)
-      })
-      .addCase(fetchSearchBooks.fulfilled, (state, action) => {
-        state.searchBooks = action.payload.data
-        state.searchStatus = 'succeeded'
-      })
-      .addCase(fetchSearchBooks.pending, (state, action) => {
-        state.searchStatus = 'loading'
       })
   },
 })

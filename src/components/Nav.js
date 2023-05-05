@@ -62,7 +62,7 @@ function ResponsiveAppBar() {
         <AppBar sx={{ bgcolor: 'black' }} position="fixed">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AccIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              {/* <AccIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
               <Typography
                 variant="h6"
                 noWrap
@@ -78,7 +78,7 @@ function ResponsiveAppBar() {
                   textDecoration: 'none',
                 }}
               >
-                Arthive
+                PBFF
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -134,7 +134,7 @@ function ResponsiveAppBar() {
                   textDecoration: 'none',
                 }}
               >
-                Arthive
+                pbff
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (

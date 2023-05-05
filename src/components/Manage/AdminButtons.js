@@ -1,47 +1,37 @@
 import { useDispatch } from 'react-redux'
 import { deleteBook, updateBook } from '../../reducers/bookSlice'
-import { Button } from 'react-bootstrap'
+import {
+  DeleteBookIcon,
+  UnpublishBookIcon,
+  PublishBookIcon,
+} from '../Icons/BookIcon'
+import { useEffect, useState } from 'react'
+import { Stack, Typography } from '@mui/material'
+import ConfirmDialog from './ConfirmDialog'
 
-const AdminButtons = ({ book }) => {
-  const dispatch = useDispatch()
+const AdminButtons = ({ book, redirect }) => {
+  const [published, setPublished] = useState()
+
+  useEffect(() => {
+    setPublished(book.published)
+  }, [])
+
+  const togglePublished = () => {
+    setPublished(!published)
+  }
 
   return (
     <>
-      <Button
-        onClick={() => dispatch(deleteBook(book.id))}
-        style={{ margin: 5 }}
-        variant="dark"
-      >
-        Delete
-      </Button>
-      {book.published ? (
-        <Button
-          onClick={() => {
-            dispatch(updateBook({ id: book.id, update: { published: false } }))
-          }}
-          style={{ margin: 5 }}
-          variant="danger"
-        >
-          Unpublish
-        </Button>
-      ) : (
-        <>
-          <Button
-            onClick={() => {
-              dispatch(
-                updateBook({
-                  id: book.id,
-                  update: { published: true, new: false },
-                })
-              )
-            }}
-            style={{ margin: 5 }}
-            variant="success"
-          >
-            Publish
-          </Button>
-        </>
-      )}
+      <Stack direction="row">
+        <DeleteBookIcon book={book} redirect={redirect} />
+        {published ? (
+          <UnpublishBookIcon toggle={togglePublished} book={book} />
+        ) : (
+          <>
+            <PublishBookIcon toggle={togglePublished} book={book} />
+          </>
+        )}
+      </Stack>
     </>
   )
 }

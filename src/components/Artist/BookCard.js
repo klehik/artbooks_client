@@ -14,8 +14,12 @@ const BookCard = React.forwardRef(({ book }, ref) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="260"
-          image={`${book.images[book.images.length - 1].url}`}
+          height="400px"
+          image={
+            book.thumbnail
+              ? book.thumbnail.url
+              : `${book.images[book.images.length - 1].url}`
+          }
           alt="thumbnail"
         />
         <CardContent>

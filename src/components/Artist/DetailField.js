@@ -1,19 +1,32 @@
 import { useContext, useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 
 import { UserContext } from '../../context/UserContext'
 import { useDispatch } from 'react-redux'
 import { updateBook } from '../../reducers/bookSlice'
+import EditIcon from '@mui/icons-material/Edit'
+import CloseIcon from '@mui/icons-material/Close'
+import CheckIcon from '@mui/icons-material/Check'
+import {
+  IconButton,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 
 const DetailField = ({ fieldName, fieldTitle, defaultValue, bookId }) => {
   const [editMode, setEditMode] = useState(false)
   const [value, setValue] = useState()
+  const [width, setWidth] = useState()
   const { loggedUser } = useContext(UserContext)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     setValue(defaultValue)
+    setWidth(defaultValue.length * 20)
+    console.log(defaultValue, width)
   }, [])
 
   const handleChange = (event) => {
@@ -26,54 +39,70 @@ const DetailField = ({ fieldName, fieldTitle, defaultValue, bookId }) => {
   }
 
   const defaultView = () => (
-    <div
-      onClick={() => {
-        setEditMode(true)
-      }}
-    >
-      {fieldTitle}: {value}
-    </div>
+    <Container>
+      <Typography>{value}</Typography>
+      {loggedUser && loggedUser.role === 'admin' ? (
+        <Tooltip title="Edit">
+          <IconButton onClick={() => setEditMode(true)} aria-label="edit">
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+      ) : null}
+    </Container>
   )
-
   const editView = () => (
-    <div>
-      <label for={fieldName}>{fieldTitle}:</label>
-      {fieldName === 'description' ? (
-        <textarea
-          name={fieldName}
-          className="form-control"
-          defaultValue={value}
-          onChange={handleChange}
-        ></textarea>
-      ) : (
-        <input
-          name={fieldName}
-          className="form-control"
-          defaultValue={value}
-          onChange={handleChange}
-        ></input>
-      )}
-      <Button
-        variant="dark"
-        onClick={() => {
-          setEditMode(false)
-          setValue(defaultValue)
-        }}
-      >
-        x
-      </Button>
-      <Button variant="dark" onClick={handleSave}>
-        save
-      </Button>
-    </div>
+    <Container>
+      <Container>
+        {fieldName === 'description' ? (
+          <TextField
+            type="textarea"
+            defaultValue={value}
+            name={fieldName}
+            onChange={handleChange}
+            label={fieldTitle}
+            multiline
+            fullWidth
+            variant="outlined"
+          />
+        ) : (
+          <TextField
+            type="text"
+            defaultValue={value}
+            name={fieldName}
+            onChange={handleChange}
+            variant="standard"
+            label={fieldTitle}
+          />
+        )}
+      </Container>
+      <Container>
+        <Tooltip title="Cancel">
+          <IconButton
+            onClick={() => {
+              setEditMode(false)
+              setValue(defaultValue)
+            }}
+            aria-label="cancel"
+          >
+            <CloseIcon />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Save">
+          <IconButton onClick={handleSave} aria-label="save">
+            <CheckIcon />
+          </IconButton>
+        </Tooltip>
+      </Container>
+    </Container>
   )
 
   return (
-    <div>
+    <>
       {editMode && loggedUser && loggedUser.role === 'admin'
         ? editView()
         : defaultView()}
-    </div>
+    </>
   )
 }
 

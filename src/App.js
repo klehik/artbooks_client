@@ -17,26 +17,26 @@ import { Container } from 'react-bootstrap'
 import ResponsiveAppBar from './components/Nav'
 import Banner from './components/Banner'
 import { ToastContainer } from 'react-toastify'
+import Footer from './components/Footer'
 
 const App = () => {
   const [loggedUser, setLoggedUser] = useState()
+
   const artists = useSelector((state) => state.artists.artists)
-  const searchBooks = useSelector((state) => state.books.searchBooks)
+  const searchBooks = useSelector((state) => state.searchBooks.books)
   const books = useSelector((state) => state.books.books)
   const dashBooks = useSelector((state) => state.books.dashBooks)
-  const dispatch = useDispatch()
 
-  // match url params for details
-  const bookMatch = useMatch('/books/:id')
+  const dispatch = useDispatch()
+  console.log(artists, searchBooks, books, dashBooks)
+  // match url params
+  /* const bookMatch = useMatch('/books/:id')
   const book = bookMatch
-    ? books.find((book) => String(book.id) === String(bookMatch.params.id)) ||
-      dashBooks.find(
-        (book) => String(book.id) === String(bookMatch.params.id)
-      ) ||
-      searchBooks.find(
+    ? artists.books &&
+      artists.books.find(
         (book) => String(book.id) === String(bookMatch.params.id)
       )
-    : null
+    : null */
 
   const artistMatch = useMatch('/artists/:id')
   const artist = artistMatch
@@ -49,10 +49,8 @@ const App = () => {
     const getUser = async () => {
       const user = await authService.user()
       setLoggedUser(user)
-      return user
     }
     getUser()
-    dispatch(fetchArtists())
   }, [])
 
   return (
@@ -75,7 +73,7 @@ const App = () => {
           element={<Artists artists={artists}></Artists>}
         ></Route>
         <Route path="/manage/*" element={<Manage></Manage>}></Route>
-        <Route path="/books/:id" element={<BookDetails book={book} />} />
+        <Route path="/books/:id" element={<BookDetails />} />
 
         <Route
           path="/artists/:id"

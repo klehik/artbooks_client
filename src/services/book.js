@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://photobooks.up.railway.app/book'
+const baseUrl = 'http://localhost:3000/book'
 
 const uploadBook = async (bookdata) => {
   try {

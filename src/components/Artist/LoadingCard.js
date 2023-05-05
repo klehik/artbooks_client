@@ -1,17 +1,30 @@
-import { Col, Card } from 'react-bootstrap'
-import Skeleton from 'react-loading-skeleton'
+import Card from '@mui/material/Card'
+import Skeleton from '@mui/material/Skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import userIcon from '../../assets/user-icon.png'
+import { CardActionArea, CardContent } from '@mui/material'
+
 const LoadingCard = () => {
   return (
-    <Col id="books">
-      <Card>
-        <Skeleton count={4}></Skeleton>
-        <Card.Body>
-          <Skeleton count={4}></Skeleton>
-        </Card.Body>
+    <>
+      <Card sx={{ maxWidth: 600 }}>
+        <CardActionArea>
+          <Skeleton
+            sx={{ height: 260 }}
+            animation="wave"
+            variant="rectangular"
+          />
+          <CardContent>
+            <Skeleton height={30}></Skeleton>
+            <Skeleton height={30}></Skeleton>
+            <Skeleton height={30}></Skeleton>
+            <Skeleton height={30}></Skeleton>
+            <Skeleton height={30}></Skeleton>
+            <Skeleton height={30}></Skeleton>
+          </CardContent>
+        </CardActionArea>
       </Card>
-    </Col>
+    </>
   )
 }
 

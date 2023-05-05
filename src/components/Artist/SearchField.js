@@ -16,23 +16,22 @@ import ImageIcon from '@mui/icons-material/Image'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchSearchBooks } from '../../reducers/bookSlice'
+import { fetchSearchBooks } from '../../reducers/searchBookSlice'
 import { useNavigate } from 'react-router-dom'
 
 const SearchField = ({}) => {
   const myRef = useRef(null)
   const [search, setSearch] = useState('')
-  const books = useSelector((state) => state.books.searchBooks)
-  const searchStatus = useSelector((state) => state.books.searchStatus)
+  const books = useSelector((state) => state.searchBooks.books)
+  const searchStatus = useSelector((state) => state.searchBooks.status)
   const dispatch = useDispatch()
   const abortControllerRef = useRef(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     if (search) {
-      console.log('entering ', abortControllerRef.current)
       abortControllerRef.current = new AbortController()
-      console.log(abortControllerRef.current.signal)
+
       dispatch(
         fetchSearchBooks({
           query: { page: 1, limit: 500, search: search },

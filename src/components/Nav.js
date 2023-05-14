@@ -78,7 +78,7 @@ function ResponsiveAppBar() {
                   textDecoration: 'none',
                 }}
               >
-                PBFF
+                ArtBooks
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -112,7 +112,12 @@ function ResponsiveAppBar() {
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
+                      <Typography
+                        onClick={() => navigate(`/${page}`.toLowerCase())}
+                        textAlign="center"
+                      >
+                        {page}
+                      </Typography>
                     </MenuItem>
                   ))}
                 </Menu>

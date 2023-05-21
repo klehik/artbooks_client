@@ -50,12 +50,12 @@ const SearchField = ({}) => {
   }, [])
 
   const SearchResults = () => {
-    if (searchStatus === 'loading') {
+    if (searchStatus !== 'succeeded') {
       return <ListItemText>Searching</ListItemText>
     } else {
       return (
         <>
-          {books.length > 0 ? (
+          {books.length > 0 && searchStatus === 'succeeded' ? (
             books.map((book) => (
               <ListItemButton
                 key={book.id}

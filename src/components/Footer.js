@@ -1,4 +1,4 @@
-import { Container, Box } from '@mui/material'
+import { Container, Box, Typography } from '@mui/material'
 const Footer = () => {
   return (
     <Box
@@ -9,13 +9,15 @@ const Footer = () => {
 
         bottom: 0,
         width: '100%',
-        height: 400,
+        height: 250,
         margin: 'auto',
         backgroundColor: 'black',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
       }}
-    ></Box>
+    >
+      <Typography>Artbooks</Typography>
+    </Box>
   )
 }
 

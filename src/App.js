@@ -17,6 +17,7 @@ import ResponsiveAppBar from './components/Nav'
 import { ToastContainer } from 'react-toastify'
 
 import ArtistBooks from './components/Artist/ArtistBooks'
+import Footer from './components/Footer'
 const App = () => {
   const [loggedUser, setLoggedUser] = useState()
 
@@ -72,6 +73,7 @@ const App = () => {
 
         <Route path="/artists/:id" element={<ArtistBooks artist={artist} />} />
       </Routes>
+      <Footer></Footer>
     </UserContext.Provider>
   )
 }

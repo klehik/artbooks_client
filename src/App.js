@@ -73,7 +73,6 @@ const App = () => {
 
         <Route path="/artists/:id" element={<ArtistBooks artist={artist} />} />
       </Routes>
-      <Footer></Footer>
     </UserContext.Provider>
   )
 }

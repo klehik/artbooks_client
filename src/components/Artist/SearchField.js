@@ -49,6 +49,35 @@ const SearchField = ({}) => {
     abortControllerRef.current = null
   }, [])
 
+  const SearchResults = () => {
+    if (searchStatus === 'loading') {
+      return <ListItemText>Searching</ListItemText>
+    } else {
+      return (
+        <>
+          {books.length > 0 ? (
+            books.map((book) => (
+              <ListItemButton
+                key={book.id}
+                onClick={() => navigate(`./${book.id}`)}
+              >
+                <ListItemText>
+                  {book.artist} - {book.title}
+                </ListItemText>
+              </ListItemButton>
+            ))
+          ) : (
+            <ListItemButton>
+              <ListItemText>No results</ListItemText>
+            </ListItemButton>
+          )}
+        </>
+      )
+    }
+  }
+
+  console.log(searchStatus, books)
+
   return (
     <>
       <Stack
@@ -83,28 +112,7 @@ const SearchField = ({}) => {
             }}
           >
             <List dense={true}>
-              {searchStatus === 'loading' ? (
-                <ListItemText>Searching..</ListItemText>
-              ) : (
-                <>
-                  {books.length > 0 ? (
-                    books.map((book) => (
-                      <ListItemButton
-                        key={book.id}
-                        onClick={() => navigate(`./${book.id}`)}
-                      >
-                        <ListItemText>
-                          {book.artist} - {book.title}
-                        </ListItemText>
-                      </ListItemButton>
-                    ))
-                  ) : (
-                    <ListItemButton>
-                      <ListItemText>No results</ListItemText>
-                    </ListItemButton>
-                  )}
-                </>
-              )}
+              <SearchResults></SearchResults>
             </List>
           </Paper>
         ) : null}

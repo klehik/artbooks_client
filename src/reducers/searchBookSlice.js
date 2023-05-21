@@ -17,7 +17,7 @@ export const fetchSearchBooks = createAsyncThunk(
 
 const initialState = {
   books: [],
-  status: 'idle',
+  status: 'loading',
 }
 
 export const searchSlice = createSlice({
